@@ -60,6 +60,34 @@ app.post("/api/tasks", async (req, res) => {
   }
 });
 
+app.delete("/api/tasks/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Task.findByIdAndDelete(id);
+    res.status(200).json({ message: "Task deleted" });
+  } catch (error) {
+    console.error("Error deleting task:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.put("/api/tasks/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updatedTask = await Task.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+    res.status(200).json(updatedTask);
+  } catch (error) {
+    console.error("Error updating task:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGODB_URI, {
