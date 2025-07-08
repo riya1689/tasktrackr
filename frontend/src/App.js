@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div style={{ padding: '30px', fontFamily: 'Arial, sans-serif' }}>
-  <h1 style={{ fontSize: '32px', marginBottom: '20px' }}>TaskTrackr Frontend</h1>
+  <h1 style={{ fontSize: '32px', marginBottom: '20px' }}>TaskTrackr</h1>
 
   <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
     <input
