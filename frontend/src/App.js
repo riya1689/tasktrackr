@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function App() {
+  //const API_BASE = process.env.REACT_APP_API_BASE_URL;
   const [tasks, setTasks] = useState([]);
   const [formData, setFormData] = useState({ title: '', status: 'To Do' });
 
   const fetchTasks = async () => {
-    const res = await axios.get('https://tasktrackr-backend-8oed.onrender.com/api/tasks');
+    const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`);
     setTasks(res.data);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('https://tasktrackr-backend-8oed.onrender.com/api/tasks', formData);
+    await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`, formData);
     setFormData({ title: '', status: 'To Do' });
     fetchTasks(); // refresh the list
   };
@@ -63,7 +64,7 @@ function App() {
         <select
           value={task.status}
           onChange={async (e) => {
-            await axios.put(`https://tasktrackr-backend-8oed.onrender.com/api/tasks/${task._id}`, {
+            await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`, {
               status: e.target.value,
             });
             fetchTasks();
@@ -76,7 +77,7 @@ function App() {
 
         <button
           onClick={async () => {
-            await axios.delete(`https://tasktrackr-backend-8oed.onrender.com/api/tasks/${task._id}`);
+            await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`);
             fetchTasks();
           }}
           style={{
