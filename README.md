@@ -2,7 +2,8 @@
 
 A simple task tracker built using the MERN (MongoDB, Express, React, Node.js) stack where users can add, delete, and mark tasks as done and to do.
 
-
+## Live Demo
+Check out the live site: [https://tasktrackr-kappa.vercel.app](https://tasktrackr-kappa.vercel.app)
 ---
 
 ## Day 01
